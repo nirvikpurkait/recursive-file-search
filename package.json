@@ -1,0 +1,25 @@
+{
+  "name": "recursive-file-search",
+  "version": "1.0.0",
+  "description": "Gives all nested files inside a directory",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nirvikpurkait/recursive-file-search.git"
+  },
+  "keywords": [
+    "recursive",
+    "all-files",
+    "nested-files",
+    "search"
+  ],
+  "author": "Nirvik Purkait",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nirvikpurkait/recursive-file-search/issues"
+  },
+  "homepage": "https://github.com/nirvikpurkait/recursive-file-search#readme"
+}
