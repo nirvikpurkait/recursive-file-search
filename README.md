@@ -5,19 +5,18 @@ This library gets all nested files form a directory
 # Upcoming features
 
 -   Filter all files with the help of extension
-    name,
--   ingnore files and folders
+    name
 
 # To install this library execute the follwoing command
 
 ```
-npm install recursive-file-searching
+npm install recursive-file-search
 ```
 
 ## Include the library
 
 ```
-const {	recursiveFileSearchSync, recursiveFileSearchAsync} = require("recursive-file-searching");
+const {	recursiveFileSearchSync, recursiveFileSearchAsync} = require("recursive-file-search");
 ```
 
 Before using the functions provided by the library take a look at the folder and file structure (we are going to use this structure as example later) -
@@ -81,13 +80,16 @@ const yourVariableName = recursiveFileSearchSync(directory-path , { ignore: ["ch
 ```
 
 **ans**
+
 `[ 'p-file.css', 'p-file.js', 'ch-file.css', 'ch-file.js' ]`
 
 ```
 const yourVariableName = recursiveFileSearchAsync(directory-path , { ignore: ["ch-folder", "script.js", "*.html"]})
+
 yourVariableName
   .then((data) => console.log(data))
 ```
 
 **ans**
+
 `[ 'p-file.css', 'p-file.js', 'ch-file.css', 'ch-file.js' ]`
