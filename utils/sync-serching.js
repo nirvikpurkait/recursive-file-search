@@ -1,7 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 
-function recursiveFileSearchSync(dirPath, options = { ignore: [] }) {
+function recursiveFileSearchSync(
+	dirPath,
+	options = { ignore: [], filter: [] }
+) {
 	// check if options is an object literal
 	if (
 		typeof options !== "object" ||
@@ -13,8 +16,11 @@ function recursiveFileSearchSync(dirPath, options = { ignore: [] }) {
 			"options must be an object literal, undefined, or null"
 		);
 
+	// ------------------------IGNORE SECTION------------------------
+
 	// initializing the output as an array
-	const pathContents = [];
+	let pathContents = [];
+	// ignores files or folders by default
 	let ignoringContents = ["node_modules"];
 
 	// append ignoring file or folder provided by user
@@ -30,6 +36,24 @@ function recursiveFileSearchSync(dirPath, options = { ignore: [] }) {
 			ignoreByExt.push(splitedContent[splitedContent.length - 1]);
 		}
 	}
+
+	// ------------------------IGNORE SECTION------------------------
+
+	// ------------------------FILTER SECTION------------------------
+
+	const filteringContents = [];
+	if (options?.filter) {
+		for (eachContent of options.filter) {
+			if (eachContent.split(".")[0] === "*") {
+				const splitedContent = eachContent.split(".");
+				filteringContents.push(
+					splitedContent[splitedContent.length - 1]
+				);
+			}
+		}
+	}
+
+	// ------------------------FILTER SECTION------------------------
 
 	// synchronous operation for file searching
 	function recursiveFileSearch(initialPath, ignoringContents, ignoreByExt) {
@@ -74,6 +98,18 @@ function recursiveFileSearchSync(dirPath, options = { ignore: [] }) {
 	}
 
 	recursiveFileSearch(dirPath, ignoringContents, ignoreByExt);
+
+	if (filteringContents.length !== 0) {
+		pathContents = pathContents.filter((eachContent) => {
+			let splitedContentForFilter = eachContent.split(".");
+			if (
+				filteringContents.includes(
+					splitedContentForFilter[splitedContentForFilter.length - 1]
+				)
+			)
+				return eachContent;
+		});
+	}
 
 	// return the answer as an array
 	return pathContents;

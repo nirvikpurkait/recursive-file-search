@@ -2,7 +2,10 @@ const fsProm = require("fs/promises");
 const fs = require("fs");
 const path = require("path");
 
-function recursiveFileSearchAsync(initialPath, options = { ignore: [] }) {
+function recursiveFileSearchAsync(
+	initialPath,
+	options = { ignore: [], filter: [] }
+) {
 	// check if options is an object literal
 	if (
 		typeof options !== "object" ||
@@ -14,8 +17,10 @@ function recursiveFileSearchAsync(initialPath, options = { ignore: [] }) {
 			"options must be an object literal, undefined, or null"
 		);
 
+	// ------------------------IGNORE SECTION------------------------
+
 	// initializing the output as an array
-	const pathContents = [];
+	let pathContents = [];
 	// ignores files or folders by default
 	let ignoringContents = ["node_modules"];
 
@@ -32,6 +37,24 @@ function recursiveFileSearchAsync(initialPath, options = { ignore: [] }) {
 			ignoreByExt.push(splitedContent[splitedContent.length - 1]);
 		}
 	}
+
+	// ------------------------IGNORE SECTION------------------------
+
+	// ------------------------FILTER SECTION------------------------
+
+	const filteringContents = [];
+	if (options?.filter) {
+		for (eachContent of options.filter) {
+			if (eachContent.split(".")[0] === "*") {
+				const splitedContent = eachContent.split(".");
+				filteringContents.push(
+					splitedContent[splitedContent.length - 1]
+				);
+			}
+		}
+	}
+
+	// ------------------------FILTER SECTION------------------------
 
 	// asynchronous operation for file searching
 	const recusiveFileSearch = async (
@@ -80,6 +103,21 @@ function recursiveFileSearchAsync(initialPath, options = { ignore: [] }) {
 				pathContents.push(eachContent);
 			}
 		}
+
+		if (filteringContents.length !== 0) {
+			pathContents = pathContents.filter((eachContent) => {
+				let splitedContentForFilter = eachContent.split(".");
+				if (
+					filteringContents.includes(
+						splitedContentForFilter[
+							splitedContentForFilter.length - 1
+						]
+					)
+				)
+					return eachContent;
+			});
+		}
+
 		return pathContents;
 	};
 	// return the answer as a promise, promise value is an array
