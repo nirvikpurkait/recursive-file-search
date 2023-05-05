@@ -2,12 +2,11 @@
 
 This library gets all nested files form a directory
 
-# Upcoming features
+## Upcoming features
 
--   Filter all files with the help of extension
-    name
+-   Override default ignore by the library
 
-# To install this library execute the follwoing command
+## To install this library execute the follwoing command
 
 ```
 npm install recursive-file-search
@@ -61,19 +60,23 @@ In async version `yourVariableName` is a promise, whose value is an array consis
 
 As the asyc function returns a promise, we can chain it with `.then()` or `.catch()` method
 
-**The option is an object that can have multiple values**
+### API
 
 ```
 options = {
-    ignore: [folder-name,file-name]
+    ignore: [folder-name,file-name],
+    filter: [*.file-ext,*.other-ext]
 }
 ```
 
 ## Points to note
 
-This library ignores **node_modules** folder by default
+-   This library ignores **node_modules** folder by default
+-   Each element of the array of API have to be a string
 
-# Use cases
+## Use cases
+
+### ignore API
 
 ```
 const yourVariableName = recursiveFileSearchSync(directory-path , { ignore: ["ch-folder", "script.js", "*.html"]})
@@ -93,3 +96,24 @@ yourVariableName
 **ans**
 
 `[ 'p-file.css', 'p-file.js', 'ch-file.css', 'ch-file.js' ]`
+
+### filter API
+
+```
+const yourVariableName = recursiveFileSearchSync(directory-path , { filter: [ "*.html"]})
+```
+
+**ans**
+
+`[ 'p-file.html', 'ch-file.html', 'gch-file.html' ]`
+
+```
+const yourVariableName = recursiveFileSearchAsync(directory-path , { filter: ["*.html"]})
+
+yourVariableName
+  .then((data) => console.log(data))
+```
+
+**ans**
+
+`[ 'p-file.html', 'ch-file.html', 'gch-file.html' ]`
