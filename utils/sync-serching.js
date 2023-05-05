@@ -3,7 +3,7 @@ const path = require("path");
 
 function recursiveFileSearchSync(
 	dirPath,
-	options = { ignore: [], filter: [] }
+	options = { ignore: [], filter: [], defaultIgnore: true }
 ) {
 	// check if options is an object literal
 	if (
@@ -22,6 +22,10 @@ function recursiveFileSearchSync(
 	let pathContents = [];
 	// ignores files or folders by default
 	let ignoringContents = ["node_modules"];
+
+	// check if default ignore is disabled
+	if (typeof options.defaultIgnore === "boolean" && !options?.defaultIgnore)
+		ignoringContents = [];
 
 	// append ignoring file or folder provided by user
 	if (options?.ignore) {

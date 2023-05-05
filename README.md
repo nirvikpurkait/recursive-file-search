@@ -4,11 +4,6 @@ This library gets all nested files form a directory.
 
 <hr>
 
-## Upcoming features
-
--   Override default ignore by the library
-<hr>
-
 ## Install
 
 ```
@@ -65,12 +60,13 @@ In async version, `yourVariableName` is a promise, whose value is an array consi
 
 As the asyc function returns a promise, we can chain it with `.then()` or `.catch()` method
 
-### API
+### APIs
 
 ```
 options = {
     ignore: [folder-name,file-name],
-    filter: [*.file-ext,*.other-ext]
+    filter: [*.file-ext,*.other-ext],
+    defaultIgnore: false
 }
 ```
 
@@ -78,8 +74,8 @@ options = {
 
 ## Points to note
 
--   This library ignores **node_modules** folder by default
--   Each element of the array of API have to be a string
+-   This library ignores **node_modules** folder by default, you can disable it by using API provided above.
+-   Each element of the array of API have to be a string.
 <hr>
 
 ## API use case
@@ -133,3 +129,20 @@ yourVariableName
 ```
 [ 'p-file.html', 'ch-file.html', 'gch-file.html' ]
 ```
+
+### defaultIgnore as API
+
+If You want to disable the default ignore functionlity, you can use `defaultIgnore` as an API to disable it.
+
+```
+const yourVariableName = recursiveFileSearchSync(directory-path , { defaultIgnore: false})
+```
+
+```
+const yourVariableName = recursiveFileSearchAsync(directory-path , { defaultIgnore: false})
+
+yourVariableName
+  .then((data) => console.log(data))
+```
+
+<hr>
