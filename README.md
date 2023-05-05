@@ -1,16 +1,21 @@
 # Intro
 
-This library gets all nested files form a directory
+This library gets all nested files form a directory.
+
+<hr>
 
 ## Upcoming features
 
 -   Override default ignore by the library
+<hr>
 
-## To install this library execute the follwoing command
+## Install
 
 ```
 npm install recursive-file-search
 ```
+
+<hr>
 
 ## Include the library
 
@@ -39,8 +44,8 @@ Before using the functions provided by the library take a look at the folder and
 
 This library offers two types of functions -
 
--   Synchronous function
--   Asynchronous function
+-   #### Synchronous function
+-   #### Asynchronous function
 
 **To use the synchronous function -**
 
@@ -48,7 +53,7 @@ This library offers two types of functions -
 const yourVariableName = recursiveFileSearchSync(directory-path [, options])
 ```
 
-In sync version `yourVariableName` is an array consist of file names
+In sync version, `yourVariableName` is an array consist of file names
 
 **To use the asynchronous function -**
 
@@ -56,7 +61,7 @@ In sync version `yourVariableName` is an array consist of file names
 const yourVariableName = recursiveFileSearchAsync(directory-path [, options])
 ```
 
-In async version `yourVariableName` is a promise, whose value is an array consist of file names
+In async version, `yourVariableName` is a promise, whose value is an array consist of file names
 
 As the asyc function returns a promise, we can chain it with `.then()` or `.catch()` method
 
@@ -69,22 +74,27 @@ options = {
 }
 ```
 
+<hr>
+
 ## Points to note
 
 -   This library ignores **node_modules** folder by default
 -   Each element of the array of API have to be a string
+<hr>
 
-## Use cases
+## API use case
 
-### ignore API
+### ignore as API
 
 ```
 const yourVariableName = recursiveFileSearchSync(directory-path , { ignore: ["ch-folder", "script.js", "*.html"]})
 ```
 
-**ans**
+**output**
 
-`[ 'p-file.css', 'p-file.js', 'ch-file.css', 'ch-file.js' ]`
+```
+[ 'p-file.css', 'p-file.js', 'ch-file.css', 'ch-file.js' ]
+```
 
 ```
 const yourVariableName = recursiveFileSearchAsync(directory-path , { ignore: ["ch-folder", "script.js", "*.html"]})
@@ -93,19 +103,23 @@ yourVariableName
   .then((data) => console.log(data))
 ```
 
-**ans**
+**output**
 
-`[ 'p-file.css', 'p-file.js', 'ch-file.css', 'ch-file.js' ]`
+```
+[ 'p-file.css', 'p-file.js', 'ch-file.css', 'ch-file.js' ]
+```
 
-### filter API
+### filter as API
 
 ```
 const yourVariableName = recursiveFileSearchSync(directory-path , { filter: [ "*.html"]})
 ```
 
-**ans**
+**output**
 
-`[ 'p-file.html', 'ch-file.html', 'gch-file.html' ]`
+```
+[ 'p-file.html', 'ch-file.html', 'gch-file.html' ]
+```
 
 ```
 const yourVariableName = recursiveFileSearchAsync(directory-path , { filter: ["*.html"]})
@@ -114,6 +128,8 @@ yourVariableName
   .then((data) => console.log(data))
 ```
 
-**ans**
+**output**
 
-`[ 'p-file.html', 'ch-file.html', 'gch-file.html' ]`
+```
+[ 'p-file.html', 'ch-file.html', 'gch-file.html' ]
+```
