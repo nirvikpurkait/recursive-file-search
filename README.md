@@ -80,7 +80,7 @@ options = {
 
 ## API use case
 
-### ignore as API
+### `ignore` as API
 
 ```
 const yourVariableName = recursiveFileSearchSync(directory-path , { ignore: ["ch-folder", "script.js", "*.html"]})
@@ -105,7 +105,7 @@ yourVariableName
 [ 'p-file.css', 'p-file.js', 'ch-file.css', 'ch-file.js' ]
 ```
 
-### filter as API
+### `filter` as API
 
 ```
 const yourVariableName = recursiveFileSearchSync(directory-path , { filter: [ "*.html"]})
@@ -130,9 +130,9 @@ yourVariableName
 [ 'p-file.html', 'ch-file.html', 'gch-file.html' ]
 ```
 
-### defaultIgnore as API
+### `defaultIgnore` as API
 
-If You want to disable the default ignore functionlity, you can use `defaultIgnore` as an API to disable it.
+If You want to disable the default ignore functionlity, you can use `defaultIgnore` API to disable it.
 
 ```
 const yourVariableName = recursiveFileSearchSync(directory-path , { defaultIgnore: false})
