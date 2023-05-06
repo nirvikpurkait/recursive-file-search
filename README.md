@@ -48,7 +48,7 @@ This library offers two types of functions -
 const yourVariableName = recursiveFileSearchSync(directory-path [, options])
 ```
 
-In sync version, `yourVariableName` is an array consist of file names
+In sync version, `yourVariableName` is an array consist of file names.
 
 **To use the asynchronous function -**
 
@@ -56,9 +56,9 @@ In sync version, `yourVariableName` is an array consist of file names
 const yourVariableName = recursiveFileSearchAsync(directory-path [, options])
 ```
 
-In async version, `yourVariableName` is a promise, whose value is an array consist of file names
+In async version, `yourVariableName` is a promise, whose value is an array consist of file names.
 
-As the asyc function returns a promise, we can chain it with `.then()` or `.catch()` method
+As the asyc function returns a promise, we can chain it with `.then()` or `.catch()` method.
 
 ### APIs
 
@@ -81,6 +81,8 @@ options = {
 ## API use case
 
 ### `ignore` as API
+
+`ignore` API allows you to ignore file or folder to ignore.
 
 ```
 const yourVariableName = recursiveFileSearchSync(directory-path , { ignore: ["ch-folder", "script.js", "*.html"]})
@@ -106,6 +108,8 @@ yourVariableName
 ```
 
 ### `filter` as API
+
+`filter` API allows you to filter out files by extension name.
 
 ```
 const yourVariableName = recursiveFileSearchSync(directory-path , { filter: [ "*.html"]})
